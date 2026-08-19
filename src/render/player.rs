@@ -2,11 +2,11 @@ use std::f64::consts::PI;
 use crate::core::world::Player;
 use crate::mq_conv;
 use glam::{DMat3, DVec3};
-use macroquad::color::WHITE;
+use macroquad::color;
+use macroquad::color::{Color};
 use macroquad::models::draw_affine_parallelepiped;
-use macroquad::prelude::SKYBLUE;
 
-fn draw_cube(center: DVec3, size: DVec3, pivot: DVec3, rot: DMat3) {
+fn draw_cube(center: DVec3, size: DVec3, pivot: DVec3, rot: DMat3, color: Color) {
     let offset_from_pivot = center - pivot;
     let rotated_offset = rot * offset_from_pivot;
     let rotated_center = pivot + rotated_offset;
@@ -31,7 +31,7 @@ fn draw_cube(center: DVec3, size: DVec3, pivot: DVec3, rot: DMat3) {
         mq_conv::conv_vec3(edge_y.as_vec3()),
         mq_conv::conv_vec3(edge_z.as_vec3()),
         None,
-        SKYBLUE
+        color
     );
 }
 
@@ -53,6 +53,12 @@ impl BodyBox {
 }
 
 pub fn draw_player_mesh(player: &Player, cur_time: f64, tick_frac: f64) {
+    let draw_color = if player.hurt_timer > 0 {
+        color::RED
+    } else {
+        color::SKYBLUE
+    };
+
     const BODY_BOXES: [BodyBox; 6] = [
         BodyBox::new(
             BodyBoxType::Torso,
@@ -126,7 +132,8 @@ pub fn draw_player_mesh(player: &Player, cur_time: f64, tick_frac: f64) {
             origin*SCALING_FACTOR + player_pos,
             size*SCALING_FACTOR,
             pivot_pos*SCALING_FACTOR + player_pos,
-            rot
+            rot,
+            draw_color
         );
     }
 }
