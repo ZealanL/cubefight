@@ -47,17 +47,10 @@ fn window_conf() -> Conf {
 #[macroquad::main("CubeFight", window_conf)]
 async fn main() {
     let mut world = World::new();
-    
-    let mut blocks = Vec::new();
+
     for xi in 0..16 {
         for zi in 0..16 {
-            for yi in 0..256 {
-                blocks.push(
-                    if fastrand::f32() < 0.3 {
-                        world.set_block(IVec3::new(xi, yi, zi), BlockKind::FullCube).unwrap();
-                    }
-                );
-            }
+            world.set_block(IVec3::new(xi, 0, zi), BlockKind::FullCube).unwrap();
         }
     }
     let chunk_meshes = render::build_chunk_meshes(
@@ -85,8 +78,13 @@ async fn main() {
     let player_id = world.add_player(Player::new());
     {
         let player = world.get_player_mut(player_id).unwrap();
-        player.prev_pos = player.pos;
-        player.pos = DVec3::new(0.0, 258.0, 0.0);
+        player.pos = DVec3::new(8.0, 2.0, 8.0);
+    }
+
+    let other_player_id = world.add_player(Player::new());
+    {
+        let player = world.get_player_mut(other_player_id).unwrap();
+        player.pos = DVec3::new(3.0, 3.0, 3.0);
     }
 
     let mut last_tick_time: f64 = 0.0;
@@ -106,7 +104,8 @@ async fn main() {
         if cur_time >= last_tick_time + (1.0 / 20.0) {
             let controls = determine_player_controls(world.get_player(player_id).unwrap());
             let packet = client::make_player_move(&world, player_id, &controls);
-            server::tick(vec![packet], &mut world);
+            let other_packet = client::make_player_move(&world, other_player_id, &PlayerControls::DEFAULT);
+            server::tick(vec![packet, other_packet], &mut world);
             last_tick_time += (1.0 / 20.0);
         }
 
