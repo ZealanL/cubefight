@@ -1,0 +1,9 @@
+
+___*
+
+/target/
+.idea/
+.gradle/
+build/
+*.jar
+run/

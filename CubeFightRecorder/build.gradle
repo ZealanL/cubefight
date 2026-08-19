@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        maven {
+            name = "Fabric"
+            url = "https://maven.fabricmc.net/"
+        }
+        maven {
+            name = "Legacy Fabric"
+            url = "https://repo.legacyfabric.net/repository/legacyfabric/"
+        }
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'net.fabricmc:fabric-loom:1.15-SNAPSHOT'
+        classpath 'net.legacyfabric:legacy-looming:1.15-SNAPSHOT'
+    }
+}
+
+apply plugin: 'fabric-loom'
+apply plugin: 'legacy-looming'
+apply plugin: 'maven-publish'
+
+version = project.mod_version
+group = project.maven_group
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.legacyfabric:yarn:${project.minecraft_version}+build.${project.yarn_build}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    modImplementation "net.legacyfabric.legacy-fabric-api:legacy-fabric-api:1.9.0+1.8.9"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 8
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}"}
+    }
+}

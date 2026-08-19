@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "cubefightrecorder",
+  "version": "${version}",
+
+  "name": "CubeFight Recorder",
+  "description": "A data recording mod for cubefight",
+  "authors": [
+    "ZealanL"
+  ],
+
+  "license": "MIT",
+
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "zealan.cubefight.CubeFightRecorderMod"
+    ]
+  },
+  "mixins": [
+    "cubefightrecorder.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.8.9"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "zealan.cubefight.mixins",
+  "mixins": [],
+  "server": [],
+  "client": [
+    "MixinClientWorld",
+    "MixinMinecraftClient"
+  ],
+  "compatibilityLevel": "JAVA_8"
+}

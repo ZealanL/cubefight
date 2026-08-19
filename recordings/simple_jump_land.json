@@ -1,0 +1,611 @@
+{
+  "ticks": [
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.419999986886978,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          0.33319999363422365,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": true,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.7531999805212015,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          0.24813599859094576,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": true,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          5.001335979112147,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          0.16477328182606651,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": true,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          5.166109260938214,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          0.08307781780646721,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": true,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          5.249187078744681,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          0.0030162615090425808,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": true,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          5.249187078744681,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          5.170787077218802,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.1552320045166016,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          5.0155550727022,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.230527368912964,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.785027703789236,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.30431682745754424,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.480710876331692,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.37663049823865513,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.104080378093037,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.44749789698341763,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": false,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    },
+    {
+      "player": {
+        "pos": [
+          1486.5166574339287,
+          4.0,
+          341.4504633102007
+        ],
+        "vel": [
+          0.0,
+          -0.0784000015258789,
+          0.0
+        ],
+        "yaw": -186.29957580566406,
+        "pitch": 66.74996948242188,
+        "on_ground": true,
+        "sprinting": false,
+        "sneaking": false
+      },
+      "controls": {
+        "move_f": false,
+        "move_b": false,
+        "move_r": false,
+        "move_l": false,
+        "jump": false,
+        "sprint": false,
+        "sneak": false
+      }
+    }
+  ],
+  "blocks_involved": [
+    [
+      1486,
+      3,
+      342
+    ],
+    [
+      1487,
+      3,
+      341
+    ],
+    [
+      1487,
+      3,
+      342
+    ],
+    [
+      1485,
+      3,
+      341
+    ],
+    [
+      1486,
+      3,
+      340
+    ],
+    [
+      1485,
+      3,
+      342
+    ],
+    [
+      1486,
+      3,
+      341
+    ],
+    [
+      1487,
+      3,
+      340
+    ],
+    [
+      1485,
+      3,
+      340
+    ]
+  ]
+}
