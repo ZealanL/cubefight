@@ -1,4 +1,4 @@
-use crate::core::world::{PlayerId, Player, PlayerControls, PlayerMoveInput, World};
+use crate::core::world::{PlayerId, Player, PlayerControls, PlayerMoveInput, World, tracing};
 use glam::{DVec2, DVec3};
 use crate::core::math::Angle;
 use crate::core::update::{collision_util, Packet};
@@ -156,4 +156,24 @@ pub fn make_player_move(world: &World, id: PlayerId, controls: &PlayerControls) 
         sneaking: player.sneaking,
         on_ground: player.on_ground,
     })
+}
+
+pub fn try_make_attack(world: &World, id: PlayerId) -> Option<Packet> {
+    let player = world.get_player(id).unwrap().clone();
+    const REACH: f64 = 3.0;
+    let from_pos = player.eye_pos();
+    let to_pos = from_pos + player.angle.get_forward() * REACH;
+
+    let Some(player_hit_result) = tracing::trace_players(from_pos, to_pos, world, Some(id)) else {
+        return None;
+    };
+
+    let block_hit_result = tracing::trace_blocks(from_pos, to_pos, world);
+    if let Some(block_hit_result) = block_hit_result {
+        if block_hit_result.hit_dist < player_hit_result.hit_dist {
+            return None;
+        }
+    }
+
+    Some(Packet::new(id, PacketData::Attack(player_hit_result.hit_player)))
 }

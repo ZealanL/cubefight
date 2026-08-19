@@ -16,7 +16,9 @@ pub struct Player {
     pub health: f64,
     pub on_ground: bool,
     pub sprinting: bool,
+    pub sprint_kb: bool,
     pub sneaking: bool,
+    pub hurt_timer: usize,
 }
 
 impl Player {
@@ -29,9 +31,11 @@ impl Player {
             vel: DVec3::ZERO,
             angle: Angle::ZERO,
             health: Self::max_health(),
+            sprint_kb: false,
             on_ground: false,
             sprinting: false,
             sneaking: false,
+            hurt_timer: 0,
         }
     }
 
@@ -43,6 +47,11 @@ impl Player {
         Self::base_hitbox().offset(self.pos)
     }
 
+    pub fn eye_pos(&self) -> DVec3 {
+        self.pos + DVec3::new(0.0, Self::eye_height(), 0.0)
+    }
+
+    // TODO: These functions are lame
     pub fn base_hitbox() -> DBox3 {
         DBox3::new(
             DVec3::new(-0.3, 0.0, -0.3),

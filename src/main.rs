@@ -4,11 +4,11 @@ use glam::{DVec3, IVec3, Vec3};
 use macroquad::camera::{set_camera, set_default_camera, Camera3D};
 use macroquad::color::Color;
 use macroquad::conf::Conf;
-use macroquad::input::{is_key_down, mouse_delta_position, set_cursor_grab, show_mouse, KeyCode};
+use macroquad::input::{is_key_down, mouse_delta_position, set_cursor_grab, show_mouse, KeyCode, MouseButton};
 use macroquad::material::{gl_use_material, load_material, MaterialParams};
 use macroquad::miniquad::{Comparison, CullFace, PipelineParams, ShaderSource};
 use macroquad::models::draw_mesh;
-use macroquad::prelude::{clear_background, get_time, load_texture, next_frame, ImageFormat};
+use macroquad::prelude::{clear_background, get_time, is_mouse_button_down, load_texture, next_frame, ImageFormat};
 use macroquad::texture::Texture2D;
 use crate::core::math::Angle;
 use crate::core::update::{client, server};
@@ -30,6 +30,7 @@ fn determine_player_controls(player: &Player) -> PlayerControls {
     PlayerControls {
         angle: player.angle,
         move_input,
+        attack: is_mouse_button_down(MouseButton::Left),
         jump: is_key_down(KeyCode::Space),
         sprint: is_key_down(KeyCode::LeftShift),
         sneak: is_key_down(KeyCode::LeftControl)
@@ -103,9 +104,19 @@ async fn main() {
         let cur_time = get_time();
         if cur_time >= last_tick_time + (1.0 / 20.0) {
             let controls = determine_player_controls(world.get_player(player_id).unwrap());
-            let packet = client::make_player_move(&world, player_id, &controls);
-            let other_packet = client::make_player_move(&world, other_player_id, &PlayerControls::DEFAULT);
-            server::tick(vec![packet, other_packet], &mut world);
+
+            let mut packets = vec![
+                client::make_player_move(&world, player_id, &controls),
+                client::make_player_move(&world, other_player_id, &PlayerControls::DEFAULT),
+            ];
+
+            if controls.attack {
+                if let Some(attack_packet) = client::try_make_attack(&world, player_id) {
+                    packets.push(attack_packet);
+                }
+            }
+
+            server::tick(packets, &mut world);
             last_tick_time += (1.0 / 20.0);
         }
 
@@ -122,8 +133,9 @@ async fn main() {
         );
         let camera_forward = camera_angle.get_forward().as_vec3();
         let camera_target = camera_pos + camera_forward;
-        camera_pos -= camera_forward * 1.0;
-        camera_pos.y += 0.1;
+        // Third person
+        //camera_pos -= camera_forward * 1.0;
+        //camera_pos.y += 0.1;
 
         set_camera(&Camera3D {
             position: mq_conv::conv_vec3(camera_pos),
@@ -138,6 +150,10 @@ async fn main() {
             draw_mesh(chunk_mesh);
         }
         for player in world.get_player_map().values() {
+            if player.id() == player_id {
+                continue;
+            }
+            
             render::draw_player_mesh(player, cur_time, tick_frac);
         }
 

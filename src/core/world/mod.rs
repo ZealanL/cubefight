@@ -2,6 +2,7 @@ mod player;
 mod block_kind;
 mod chunk;
 mod player_controls;
+pub mod tracing;
 
 use std::collections::HashMap;
 use glam::IVec3;

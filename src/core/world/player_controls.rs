@@ -29,6 +29,7 @@ impl From<DVec2> for PlayerMoveInput {
 pub struct PlayerControls {
     pub angle: Angle,
     pub move_input: PlayerMoveInput,
+    pub attack: bool,
     pub jump: bool,
     pub sprint: bool,
     pub sneak: bool,
@@ -37,6 +38,7 @@ impl PlayerControls {
     pub const DEFAULT: Self = Self {
         angle: Angle::ZERO,
         move_input: PlayerMoveInput::ZERO,
+        attack: false,
         jump: false,
         sprint: false,
         sneak: false,

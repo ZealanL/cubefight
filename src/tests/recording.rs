@@ -50,6 +50,7 @@ impl ControlsRecord {
                 forward: move_forward,
                 right: move_right
             },
+            attack: false,
             jump: self.jump,
             sprint: self.sprint,
             sneak: self.sneak,
