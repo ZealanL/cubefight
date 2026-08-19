@@ -68,12 +68,16 @@ fn handle_packet(sender_id: PlayerId, data: PacketData, world: &mut World) {
     }
 }
 
-pub fn tick(packets: Vec<Packet>, world: &mut World) {
+pub fn tick(mut packets: Vec<Packet>, world: &mut World) {
     let player_ids = world.get_player_map().keys().cloned().collect::<Vec<_>>();
     for &player_id in &player_ids {
         let player = world.get_player_mut(player_id).unwrap();
         player.prev_pos = player.pos;
     }
+
+    packets.sort_by(
+        |a, b| usize::cmp(&a.data.ordering(), &b.data.ordering())
+    );
 
     for packet in packets {
         handle_packet(packet.sender_id, packet.data, world);

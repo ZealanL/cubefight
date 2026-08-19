@@ -15,6 +15,15 @@ pub enum PacketData {
     Attack(PlayerId)
 }
 
+impl PacketData {
+    pub fn ordering(&self) -> usize {
+        match self {
+            PacketData::Move { .. } => 1,
+            PacketData::Attack(_) => 2,
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct Packet {
     pub sender_id: PlayerId,
