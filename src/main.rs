@@ -3,6 +3,7 @@ use std::ops::Add;
 use glam::{DVec3, IVec3, Vec3};
 use macroquad::camera::{set_camera, set_default_camera, Camera3D};
 use macroquad::color::Color;
+use macroquad::conf::Conf;
 use macroquad::input::{is_key_down, mouse_delta_position, set_cursor_grab, show_mouse, KeyCode};
 use macroquad::material::{gl_use_material, load_material, MaterialParams};
 use macroquad::miniquad::{Comparison, CullFace, PipelineParams, ShaderSource};
@@ -32,7 +33,15 @@ fn determine_player_controls(player: &Player) -> PlayerControls {
     }
 }
 
-#[macroquad::main("CubeFight")]
+fn window_conf() -> Conf {
+    Conf {
+        draw_call_vertex_capacity: 100_000,
+        draw_call_index_capacity: 100_000,
+        ..Default::default()
+    }
+}
+
+#[macroquad::main("CubeFight", window_conf)]
 async fn main() {
     let mut world = World::new();
     

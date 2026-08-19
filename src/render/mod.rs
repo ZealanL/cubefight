@@ -6,7 +6,7 @@ use macroquad::prelude::Vertex;
 pub fn build_chunk_meshes(chunk: &Chunk) -> Vec<Mesh> {
     let mut meshes = Vec::new();
 
-    const STEP_SIZE: usize = 1;
+    const STEP_SIZE: usize = 2;
 
     for y_start in (0..256).step_by(STEP_SIZE) {
         let mut verts: Vec<Vertex> = Vec::new();
