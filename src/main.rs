@@ -44,7 +44,6 @@ fn window_conf() -> Conf {
         ..Default::default()
     }
 }
-
 #[macroquad::main("CubeFight", window_conf)]
 async fn main() {
     let mut world = World::new();
@@ -153,11 +152,12 @@ async fn main() {
             if player.id() == player_id {
                 continue;
             }
-            
+
             render::draw_player_mesh(player, cur_time, tick_frac);
         }
 
         set_default_camera();
+        render::draw_crosshair();
         next_frame().await
     }
 }
