@@ -105,7 +105,11 @@ async fn main() {
         let camera_pos = player.prev_pos.lerp(player.pos, tick_frac).as_vec3().add(
             Vec3::new(0.0, Player::eye_height() as f32, 0.0)
         );
-        let camera_forward = player.angle.get_forward().as_vec3();
+        let camera_angle = Angle::new(
+            player.angle.yaw,
+            player.angle.pitch.clamp(-90.0 + 1e-3, 90.0 - 1e-3)
+        );
+        let camera_forward = camera_angle.get_forward().as_vec3();
         let camera_target = camera_pos + camera_forward;
 
         set_camera(&Camera3D {
