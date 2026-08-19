@@ -4,6 +4,7 @@ use glam::DVec3;
 use include_dir::{Dir, include_dir};
 use std::collections::HashMap;
 use std::ffi::OsStr;
+use crate::core::update::{client, server};
 
 mod recording;
 
@@ -79,12 +80,10 @@ fn test_recording(recording: Recording, recording_name: &str) {
             }
         }
 
-        let player = world.get_player_mut(player_id).unwrap();
-        let mut controls_map = HashMap::new();
-        let controls = next_tick_controls.to_player_controls(player.angle);
-        controls_map.insert(player_id, controls.clone());
+        let controls = next_tick_controls.to_player_controls(world.get_player(player_id).unwrap().angle);
+        let move_packet = client::make_player_move(&world, player_id, &controls);
+        server::tick(vec![move_packet], &mut world);
 
-        world.tick(controls_map);
         prev_controls = controls;
     }
 }

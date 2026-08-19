@@ -2,7 +2,6 @@ mod player;
 mod block_kind;
 mod chunk;
 mod player_controls;
-pub mod update;
 
 use std::collections::HashMap;
 use glam::IVec3;
@@ -13,7 +12,7 @@ pub use player_controls::*;
 
 #[derive(Debug, Clone)]
 pub struct World {
-    players: HashMap<EntityId, Player>,
+    players: HashMap<PlayerId, Player>,
     chunks: HashMap<ChunkPos, Chunk>,
 }
 
@@ -25,7 +24,7 @@ impl World {
         }
     }
 
-    pub fn add_player(&mut self, entity: Player) -> EntityId {
+    pub fn add_player(&mut self, entity: Player) -> PlayerId {
         let id = entity.id();
         let existing = self.players.insert(id, entity);
         if existing.is_some() {
@@ -34,19 +33,19 @@ impl World {
         id
     }
 
-    pub fn remove_player(&mut self, id: EntityId) -> Option<Player> {
+    pub fn remove_player(&mut self, id: PlayerId) -> Option<Player> {
         self.players.remove(&id)
     }
 
-    pub fn get_player(&self, entity_id: EntityId) -> Option<&Player> {
-        self.players.get(&entity_id)
+    pub fn get_player(&self, id: PlayerId) -> Option<&Player> {
+        self.players.get(&id)
     }
 
-    pub fn get_player_mut(&mut self, entity_id: EntityId) -> Option<&mut Player> {
-        self.players.get_mut(&entity_id)
+    pub fn get_player_mut(&mut self, id: PlayerId) -> Option<&mut Player> {
+        self.players.get_mut(&id)
     }
 
-    pub fn get_player_map(&self) -> &HashMap<EntityId, Player> {
+    pub fn get_player_map(&self) -> &HashMap<PlayerId, Player> {
         &self.players
     }
 

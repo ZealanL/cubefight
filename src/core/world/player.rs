@@ -2,12 +2,12 @@ use std::range::Range;
 use glam::DVec3;
 use crate::core::math::{Angle, DBox3};
 
-pub type EntityId = u32;
+pub type PlayerId = u32;
 
 
 #[derive(Debug, Clone)]
 pub struct Player {
-    id: EntityId,
+    id: PlayerId,
 
     pub pos: DVec3,
     pub prev_pos: DVec3,
@@ -22,7 +22,7 @@ pub struct Player {
 impl Player {
     pub fn new() -> Self {
         Self {
-            id: fastrand::u32(0..EntityId::MAX),
+            id: fastrand::u32(0..PlayerId::MAX),
 
             pos: DVec3::ZERO,
             prev_pos: DVec3::ZERO,
@@ -35,7 +35,7 @@ impl Player {
         }
     }
 
-    pub fn id(&self) -> EntityId {
+    pub fn id(&self) -> PlayerId {
         self.id
     }
 

@@ -13,7 +13,7 @@ void main() {
     vec3 highlight_color = vec3(0.3, 0.2, 0.1);
     vec3 sun_normal = normalize(vec3(0.3, 0.9, 0.1));
     float sun_scale = dot(f_normal, sun_normal);
-    vec3 color = base_color + (highlight_color * sun_scale);
+    vec3 color = f_color * base_color + (highlight_color * sun_scale);
 
     float dist_from_center = max(abs(0.5 - f_uv.x), abs(0.5 - f_uv.y)) * 2.0;
     float is_center = float(dist_from_center < 0.9);

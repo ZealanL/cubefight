@@ -11,6 +11,7 @@ use macroquad::models::draw_mesh;
 use macroquad::prelude::{clear_background, get_time, load_texture, next_frame, ImageFormat};
 use macroquad::texture::Texture2D;
 use crate::core::math::Angle;
+use crate::core::update::{client, server};
 use crate::core::world::{BlockKind, Chunk, ChunkPos, Player, PlayerControls, PlayerMoveInput, World};
 
 mod core;
@@ -18,6 +19,7 @@ mod render;
 
 #[cfg(test)]
 mod tests;
+pub(crate) mod mq_conv;
 
 fn determine_player_controls(player: &Player) -> PlayerControls {
     let mut move_input = PlayerMoveInput::ZERO;
@@ -71,7 +73,7 @@ async fn main() {
             uniforms: vec![/* TODO */],
             textures: vec!["texture".to_string()],
             pipeline_params: PipelineParams {
-                cull_face: CullFace::Back,
+                cull_face: CullFace::Nothing,
                 depth_write: true,
                 depth_test: Comparison::LessOrEqual,
                 ..Default::default()
@@ -100,20 +102,19 @@ async fn main() {
             player.angle = player.angle.fixed();
         }
 
-        let time = get_time();
-        if time >= last_tick_time + (1.0 / 20.0) {
+        let cur_time = get_time();
+        if cur_time >= last_tick_time + (1.0 / 20.0) {
             let controls = determine_player_controls(world.get_player(player_id).unwrap());
-            world.tick(HashMap::from([
-                (player_id, controls),
-            ]));
+            let packet = client::make_player_move(&world, player_id, &controls);
+            server::tick(vec![packet], &mut world);
             last_tick_time += (1.0 / 20.0);
         }
 
         clear_background(Color::new(0.1, 0.2, 0.5, 1.0));
 
-        let tick_frac = ((time - last_tick_time) * 20.0).min(1.0);
+        let tick_frac = ((cur_time - last_tick_time) * 20.0).min(1.0);
         let player= world.get_player(player_id).unwrap();
-        let camera_pos = player.prev_pos.lerp(player.pos, tick_frac).as_vec3().add(
+        let mut camera_pos = player.prev_pos.lerp(player.pos, tick_frac).as_vec3().add(
             Vec3::new(0.0, Player::eye_height() as f32, 0.0)
         );
         let camera_angle = Angle::new(
@@ -122,11 +123,13 @@ async fn main() {
         );
         let camera_forward = camera_angle.get_forward().as_vec3();
         let camera_target = camera_pos + camera_forward;
+        camera_pos -= camera_forward * 1.0;
+        camera_pos.y += 0.1;
 
         set_camera(&Camera3D {
-            position: macroquad::prelude::Vec3::new(camera_pos.x, camera_pos.y, camera_pos.z),
-            target: macroquad::prelude::Vec3::new(camera_target.x, camera_target.y, camera_target.z),
-            up: macroquad::prelude::Vec3::new(0.0, 1.0, 0.0),
+            position: mq_conv::conv_vec3(camera_pos),
+            target: mq_conv::conv_vec3(camera_target),
+            up: macroquad::prelude::Vec3::Y,
             fovy: 90.0,
             ..Default::default()
         });
@@ -134,6 +137,9 @@ async fn main() {
         gl_use_material(&lighting_material);
         for chunk_mesh in chunk_meshes.iter() {
             draw_mesh(chunk_mesh);
+        }
+        for player in world.get_player_map().values() {
+            render::draw_player_mesh(player, cur_time, tick_frac);
         }
 
         set_default_camera();
