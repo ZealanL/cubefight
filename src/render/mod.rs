@@ -1,7 +1,7 @@
 use crate::core::world::{BlockKind, Chunk};
-use glam::{IVec3, Vec3};
+use glam::{IVec3, Vec2, Vec3};
 use macroquad::models::Mesh;
-use macroquad::prelude::Vertex;
+use macroquad::prelude::{Texture2D, Vertex};
 
 pub fn build_chunk_meshes(chunk: &Chunk) -> Vec<Mesh> {
     let mut meshes = Vec::new();
@@ -51,16 +51,16 @@ pub fn build_chunk_meshes(chunk: &Chunk) -> Vec<Mesh> {
                             IVec3::new(0, 0, 1),
                         ],
                         [
-                            IVec3::new(0, 1, 0),
                             IVec3::new(0, 1, 1),
                             IVec3::new(1, 1, 1),
                             IVec3::new(1, 1, 0),
+                            IVec3::new(0, 1, 0),
                         ],
                         [
+                            IVec3::new(1, 0, 0),
                             IVec3::new(0, 0, 0),
                             IVec3::new(0, 1, 0),
                             IVec3::new(1, 1, 0),
-                            IVec3::new(1, 0, 0),
                         ],
                         [
                             IVec3::new(0, 0, 1),
@@ -68,6 +68,13 @@ pub fn build_chunk_meshes(chunk: &Chunk) -> Vec<Mesh> {
                             IVec3::new(1, 1, 1),
                             IVec3::new(0, 1, 1),
                         ],
+                    ];
+
+                    const FACE_UVS: [Vec2; 4] = [
+                        Vec2::new(0.0, 0.0),
+                        Vec2::new(1.0, 0.0),
+                        Vec2::new(1.0, 1.0),
+                        Vec2::new(0.0, 1.0),
                     ];
 
                     for (fi, face_dir) in FACE_DIRS.iter().enumerate() {
@@ -87,7 +94,7 @@ pub fn build_chunk_meshes(chunk: &Chunk) -> Vec<Mesh> {
                         ]);
 
                         let face_verts = FACE_VERTS[fi];
-                        for face_vert in face_verts {
+                        for (i, face_vert) in face_verts.iter().enumerate() {
                             let vert_pos = block_pos + face_vert;
 
                             // Ambient occlusion
@@ -109,7 +116,7 @@ pub fn build_chunk_meshes(chunk: &Chunk) -> Vec<Mesh> {
                                 position: macroquad::prelude::Vec3::new(
                                     vert_pos_f.x, vert_pos_f.y, vert_pos_f.z
                                 ),
-                                uv: macroquad::prelude::Vec2::ZERO,
+                                uv: macroquad::prelude::Vec2::new(FACE_UVS[i].x, FACE_UVS[i].y),
                                 color: [color_scale, color_scale, color_scale, 255],
                                 normal: macroquad::prelude::Vec3::new(
                                     face_dir.x as f32,

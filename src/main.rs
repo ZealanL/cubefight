@@ -8,7 +8,8 @@ use macroquad::input::{is_key_down, mouse_delta_position, set_cursor_grab, show_
 use macroquad::material::{gl_use_material, load_material, MaterialParams};
 use macroquad::miniquad::{Comparison, CullFace, PipelineParams, ShaderSource};
 use macroquad::models::draw_mesh;
-use macroquad::prelude::{clear_background, get_time, next_frame};
+use macroquad::prelude::{clear_background, get_time, load_texture, next_frame, ImageFormat};
+use macroquad::texture::Texture2D;
 use crate::core::math::Angle;
 use crate::core::world::{BlockKind, Chunk, ChunkPos, Player, PlayerControls, PlayerMoveInput, World};
 
@@ -68,6 +69,7 @@ async fn main() {
         },
         MaterialParams {
             uniforms: vec![/* TODO */],
+            textures: vec!["texture".to_string()],
             pipeline_params: PipelineParams {
                 cull_face: CullFace::Back,
                 depth_write: true,
@@ -104,7 +106,7 @@ async fn main() {
             world.tick(HashMap::from([
                 (player_id, controls),
             ]));
-            last_tick_time = time;
+            last_tick_time += (1.0 / 20.0);
         }
 
         clear_background(Color::new(0.1, 0.2, 0.5, 1.0));
